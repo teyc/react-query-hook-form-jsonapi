@@ -2741,6 +2741,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/json-api-serializer@npm:^2.6.3":
+  version: 2.6.3
+  resolution: "@types/json-api-serializer@npm:2.6.3"
+  checksum: f6fae0cf1d5525f862d618651a60a5d45a1d1fd8ead54448e3c0a3ef67d260686e2bddad598a395e2c504d8cbca72b303ead623669b7d3b34d7f4ab9c7950367
+  languageName: node
+  linkType: hard
+
 "@types/json-schema@npm:*, @types/json-schema@npm:^7.0.4, @types/json-schema@npm:^7.0.5, @types/json-schema@npm:^7.0.8, @types/json-schema@npm:^7.0.9":
   version: 7.0.11
   resolution: "@types/json-schema@npm:7.0.11"
@@ -6288,16 +6295,19 @@ __metadata:
     "@testing-library/react": ^13.4.0
     "@testing-library/user-event": ^13.5.0
     "@types/jest": ^27.5.2
+    "@types/json-api-serializer": ^2.6.3
     "@types/node": ^16.18.3
     "@types/react": ^18.0.25
     "@types/react-dom": ^18.0.9
     "@types/testing-library__jest-dom": ^5.14.5
     eslint-config-react: ^1.1.7
+    json-api-serializer: ^2.6.6
     react: ^18.2.0
     react-dom: ^18.2.0
     react-hook-form: ^7.39.5
     react-query: ^3.39.2
     react-router: ^6.4.3
+    react-router-dom: ^6.4.3
     react-scripts: 5.0.1
     typescript: ^4.9.3
     web-vitals: ^2.1.4
@@ -8189,6 +8199,15 @@ __metadata:
   bin:
     jsesc: bin/jsesc
   checksum: b8b44cbfc92f198ad972fba706ee6a1dfa7485321ee8c0b25f5cedd538dcb20cde3197de16a7265430fce8277a12db066219369e3d51055038946039f6e20e17
+  languageName: node
+  linkType: hard
+
+"json-api-serializer@npm:^2.6.6":
+  version: 2.6.6
+  resolution: "json-api-serializer@npm:2.6.6"
+  dependencies:
+    setimmediate: ^1.0.5
+  checksum: 1882c4c1cc487c68a0744c720b5b06eaa7083a3c1138da744ac1b4ed0002ae8c57761f14ad1c7140cf8ef4331c1ae63a9def69914df46ad57f15aa010eb10490
   languageName: node
   linkType: hard
 
@@ -10614,7 +10633,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-router@npm:^6.4.3":
+"react-router-dom@npm:^6.4.3":
+  version: 6.4.3
+  resolution: "react-router-dom@npm:6.4.3"
+  dependencies:
+    "@remix-run/router": 1.0.3
+    react-router: 6.4.3
+  peerDependencies:
+    react: ">=16.8"
+    react-dom: ">=16.8"
+  checksum: 67a44d8dc45761a1c88793cac73839bb657168ef61b9473eb39b186b4a3ea1472454fd96f8997dc541cb1e79a723d62f9503cbc9179b63b8f1d634ed6d2b079a
+  languageName: node
+  linkType: hard
+
+"react-router@npm:6.4.3, react-router@npm:^6.4.3":
   version: 6.4.3
   resolution: "react-router@npm:6.4.3"
   dependencies:
@@ -11313,6 +11345,13 @@ __metadata:
   version: 2.0.0
   resolution: "set-blocking@npm:2.0.0"
   checksum: 6e65a05f7cf7ebdf8b7c75b101e18c0b7e3dff4940d480efed8aad3a36a4005140b660fa1d804cb8bce911cac290441dc728084a30504d3516ac2ff7ad607b02
+  languageName: node
+  linkType: hard
+
+"setimmediate@npm:^1.0.5":
+  version: 1.0.5
+  resolution: "setimmediate@npm:1.0.5"
+  checksum: c9a6f2c5b51a2dabdc0247db9c46460152ffc62ee139f3157440bd48e7c59425093f42719ac1d7931f054f153e2d26cf37dfeb8da17a794a58198a2705e527fd
   languageName: node
   linkType: hard
 

@@ -32,16 +32,19 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@testing-library/react", "virtual:d9650954c7f1725ea712d2e40695de9ea5d1c0fa9b89379134c62909d440d91b03d6c37e2823804a3404472b90a5bec73c82193190dd3c4db4c9e9edd75db91e#npm:13.4.0"],\
             ["@testing-library/user-event", "virtual:d9650954c7f1725ea712d2e40695de9ea5d1c0fa9b89379134c62909d440d91b03d6c37e2823804a3404472b90a5bec73c82193190dd3c4db4c9e9edd75db91e#npm:13.5.0"],\
             ["@types/jest", "npm:27.5.2"],\
+            ["@types/json-api-serializer", "npm:2.6.3"],\
             ["@types/node", "npm:16.18.3"],\
             ["@types/react", "npm:18.0.25"],\
             ["@types/react-dom", "npm:18.0.9"],\
             ["@types/testing-library__jest-dom", "npm:5.14.5"],\
             ["eslint-config-react", "npm:1.1.7"],\
+            ["json-api-serializer", "npm:2.6.6"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:d9650954c7f1725ea712d2e40695de9ea5d1c0fa9b89379134c62909d440d91b03d6c37e2823804a3404472b90a5bec73c82193190dd3c4db4c9e9edd75db91e#npm:18.2.0"],\
             ["react-hook-form", "virtual:d9650954c7f1725ea712d2e40695de9ea5d1c0fa9b89379134c62909d440d91b03d6c37e2823804a3404472b90a5bec73c82193190dd3c4db4c9e9edd75db91e#npm:7.39.5"],\
             ["react-query", "virtual:d9650954c7f1725ea712d2e40695de9ea5d1c0fa9b89379134c62909d440d91b03d6c37e2823804a3404472b90a5bec73c82193190dd3c4db4c9e9edd75db91e#npm:3.39.2"],\
             ["react-router", "virtual:d9650954c7f1725ea712d2e40695de9ea5d1c0fa9b89379134c62909d440d91b03d6c37e2823804a3404472b90a5bec73c82193190dd3c4db4c9e9edd75db91e#npm:6.4.3"],\
+            ["react-router-dom", "virtual:d9650954c7f1725ea712d2e40695de9ea5d1c0fa9b89379134c62909d440d91b03d6c37e2823804a3404472b90a5bec73c82193190dd3c4db4c9e9edd75db91e#npm:6.4.3"],\
             ["react-scripts", "virtual:d9650954c7f1725ea712d2e40695de9ea5d1c0fa9b89379134c62909d440d91b03d6c37e2823804a3404472b90a5bec73c82193190dd3c4db4c9e9edd75db91e#npm:5.0.1"],\
             ["typescript", "patch:typescript@npm%3A4.9.3#~builtin<compat/typescript>::version=4.9.3&hash=d73830"],\
             ["web-vitals", "npm:2.1.4"]\
@@ -4463,6 +4466,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/jest", "npm:29.2.3"],\
             ["expect", "npm:29.3.1"],\
             ["pretty-format", "npm:29.3.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@types/json-api-serializer", [\
+        ["npm:2.6.3", {\
+          "packageLocation": "../../../Users/teyc/AppData/Local/Yarn/Berry/cache/@types-json-api-serializer-npm-2.6.3-b78144eca4-8.zip/node_modules/@types/json-api-serializer/",\
+          "packageDependencies": [\
+            ["@types/json-api-serializer", "npm:2.6.3"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -9024,16 +9036,19 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@testing-library/react", "virtual:d9650954c7f1725ea712d2e40695de9ea5d1c0fa9b89379134c62909d440d91b03d6c37e2823804a3404472b90a5bec73c82193190dd3c4db4c9e9edd75db91e#npm:13.4.0"],\
             ["@testing-library/user-event", "virtual:d9650954c7f1725ea712d2e40695de9ea5d1c0fa9b89379134c62909d440d91b03d6c37e2823804a3404472b90a5bec73c82193190dd3c4db4c9e9edd75db91e#npm:13.5.0"],\
             ["@types/jest", "npm:27.5.2"],\
+            ["@types/json-api-serializer", "npm:2.6.3"],\
             ["@types/node", "npm:16.18.3"],\
             ["@types/react", "npm:18.0.25"],\
             ["@types/react-dom", "npm:18.0.9"],\
             ["@types/testing-library__jest-dom", "npm:5.14.5"],\
             ["eslint-config-react", "npm:1.1.7"],\
+            ["json-api-serializer", "npm:2.6.6"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:d9650954c7f1725ea712d2e40695de9ea5d1c0fa9b89379134c62909d440d91b03d6c37e2823804a3404472b90a5bec73c82193190dd3c4db4c9e9edd75db91e#npm:18.2.0"],\
             ["react-hook-form", "virtual:d9650954c7f1725ea712d2e40695de9ea5d1c0fa9b89379134c62909d440d91b03d6c37e2823804a3404472b90a5bec73c82193190dd3c4db4c9e9edd75db91e#npm:7.39.5"],\
             ["react-query", "virtual:d9650954c7f1725ea712d2e40695de9ea5d1c0fa9b89379134c62909d440d91b03d6c37e2823804a3404472b90a5bec73c82193190dd3c4db4c9e9edd75db91e#npm:3.39.2"],\
             ["react-router", "virtual:d9650954c7f1725ea712d2e40695de9ea5d1c0fa9b89379134c62909d440d91b03d6c37e2823804a3404472b90a5bec73c82193190dd3c4db4c9e9edd75db91e#npm:6.4.3"],\
+            ["react-router-dom", "virtual:d9650954c7f1725ea712d2e40695de9ea5d1c0fa9b89379134c62909d440d91b03d6c37e2823804a3404472b90a5bec73c82193190dd3c4db4c9e9edd75db91e#npm:6.4.3"],\
             ["react-scripts", "virtual:d9650954c7f1725ea712d2e40695de9ea5d1c0fa9b89379134c62909d440d91b03d6c37e2823804a3404472b90a5bec73c82193190dd3c4db4c9e9edd75db91e#npm:5.0.1"],\
             ["typescript", "patch:typescript@npm%3A4.9.3#~builtin<compat/typescript>::version=4.9.3&hash=d73830"],\
             ["web-vitals", "npm:2.1.4"]\
@@ -11174,6 +11189,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "../../../Users/teyc/AppData/Local/Yarn/Berry/cache/jsesc-npm-2.5.2-c5acb78804-8.zip/node_modules/jsesc/",\
           "packageDependencies": [\
             ["jsesc", "npm:2.5.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["json-api-serializer", [\
+        ["npm:2.6.6", {\
+          "packageLocation": "../../../Users/teyc/AppData/Local/Yarn/Berry/cache/json-api-serializer-npm-2.6.6-8a7dde12d0-8.zip/node_modules/json-api-serializer/",\
+          "packageDependencies": [\
+            ["json-api-serializer", "npm:2.6.6"],\
+            ["setimmediate", "npm:1.0.5"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -14739,6 +14764,34 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["react-router-dom", [\
+        ["npm:6.4.3", {\
+          "packageLocation": "../../../Users/teyc/AppData/Local/Yarn/Berry/cache/react-router-dom-npm-6.4.3-3b0e4f134b-8.zip/node_modules/react-router-dom/",\
+          "packageDependencies": [\
+            ["react-router-dom", "npm:6.4.3"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:d9650954c7f1725ea712d2e40695de9ea5d1c0fa9b89379134c62909d440d91b03d6c37e2823804a3404472b90a5bec73c82193190dd3c4db4c9e9edd75db91e#npm:6.4.3", {\
+          "packageLocation": "./.yarn/__virtual__/react-router-dom-virtual-5ec7667abc/4/Users/teyc/AppData/Local/Yarn/Berry/cache/react-router-dom-npm-6.4.3-3b0e4f134b-8.zip/node_modules/react-router-dom/",\
+          "packageDependencies": [\
+            ["react-router-dom", "virtual:d9650954c7f1725ea712d2e40695de9ea5d1c0fa9b89379134c62909d440d91b03d6c37e2823804a3404472b90a5bec73c82193190dd3c4db4c9e9edd75db91e#npm:6.4.3"],\
+            ["@remix-run/router", "npm:1.0.3"],\
+            ["@types/react", "npm:18.0.25"],\
+            ["@types/react-dom", "npm:18.0.9"],\
+            ["react", "npm:18.2.0"],\
+            ["react-dom", "virtual:d9650954c7f1725ea712d2e40695de9ea5d1c0fa9b89379134c62909d440d91b03d6c37e2823804a3404472b90a5bec73c82193190dd3c4db4c9e9edd75db91e#npm:18.2.0"],\
+            ["react-router", "virtual:d9650954c7f1725ea712d2e40695de9ea5d1c0fa9b89379134c62909d440d91b03d6c37e2823804a3404472b90a5bec73c82193190dd3c4db4c9e9edd75db91e#npm:6.4.3"]\
+          ],\
+          "packagePeers": [\
+            "@types/react-dom",\
+            "@types/react",\
+            "react-dom",\
+            "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["react-scripts", [\
         ["npm:5.0.1", {\
           "packageLocation": "../../../Users/teyc/AppData/Local/Yarn/Berry/cache/react-scripts-npm-5.0.1-d06bd2d5ad-8.zip/node_modules/react-scripts/",\
@@ -15480,6 +15533,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "../../../Users/teyc/AppData/Local/Yarn/Berry/cache/set-blocking-npm-2.0.0-49e2cffa24-8.zip/node_modules/set-blocking/",\
           "packageDependencies": [\
             ["set-blocking", "npm:2.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["setimmediate", [\
+        ["npm:1.0.5", {\
+          "packageLocation": "../../../Users/teyc/AppData/Local/Yarn/Berry/cache/setimmediate-npm-1.0.5-54587459b6-8.zip/node_modules/setimmediate/",\
+          "packageDependencies": [\
+            ["setimmediate", "npm:1.0.5"]\
           ],\
           "linkType": "HARD"\
         }]\
