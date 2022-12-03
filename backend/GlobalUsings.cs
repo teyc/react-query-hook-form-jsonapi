@@ -1,6 +1,1 @@
-﻿namespace SampleWeb;
-
-public class GlobalUsings
-{
-    
-}
+﻿global using SampleWeb.Infrastructure.Conventions;
