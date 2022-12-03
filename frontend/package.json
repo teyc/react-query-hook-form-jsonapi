@@ -11,6 +11,7 @@
     "@types/node": "^16.18.3",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.9",
+    "axios": "^1.2.0",
     "json-api-serializer": "^2.6.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -44,7 +45,10 @@
     ]
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "@types/testing-library__jest-dom": "^5.14.5",
-    "eslint-config-react": "^1.1.7"
+    "eslint": "^8.29.0",
+    "eslint-config-react": "^1.1.7",
+    "prettier": "^2.8.0"
   }
 }
