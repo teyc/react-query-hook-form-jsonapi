@@ -11,6 +11,7 @@ import {
 import "./index.css";
 import { ContactsPage } from './contacts/ContactsPage';
 import Root from './Root';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 const router = createBrowserRouter([
   {
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/contacts/:contactId",
-        element: <ContactsPage />
+        element: <ContactsPage id={1} />
       },
     ]
   },
@@ -32,10 +33,15 @@ const router = createBrowserRouter([
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
-);
+)
+
+const reactQueryClient = new QueryClient()
+
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <QueryClientProvider client={reactQueryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   </React.StrictMode>
 );
 

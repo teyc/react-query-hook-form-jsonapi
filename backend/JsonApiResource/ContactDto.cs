@@ -34,8 +34,12 @@ public class ContactDto: IDbTracked, IIdentifiable<int>
     
     [NotMapped]
     // IIdentifiable
-    public string? StringId { get; set; }
-    
+    public string? StringId
+    {
+        get => Id.ToString();
+        set => Id = int.Parse(value ?? throw new ArgumentNullException(nameof(value)));
+    }
+
     /// <summary>
     /// If id is omitted due to this exception, a lid member MAY
     /// be included to uniquely identify the resource by type
