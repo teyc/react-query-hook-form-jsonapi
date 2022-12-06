@@ -218,6 +218,11 @@ export const transformFromJsonApiDocument: <T>(
 ) => T = (resource: JsonApiResource, document: JSONAPIDocument) =>
   serializer.deserialize(resource, document)
 
+export const transformToPostRequest = <TResource>(
+  resourceType: string,
+  newValue: TResource
+): JSONAPIDocument => serializer.serialize(resourceType, newValue);
+
 export function transformToPatchRequest<TResource>(
   id: number,
   resourceType: string,

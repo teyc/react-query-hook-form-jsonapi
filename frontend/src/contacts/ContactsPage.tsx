@@ -1,6 +1,6 @@
 import { FC, useCallback, useEffect, useRef } from "react"
 import { useMutation, useQuery } from "react-query"
-import { getContact, saveContact } from "../jsonapi/contact-service"
+import { getContact, updateContact as updateContact } from "../jsonapi/contact-service"
 import { Contact } from "../jsonapi/contact"
 import { useForm } from "react-hook-form"
 import React from "react"
@@ -22,8 +22,11 @@ export const ContactsPage: FC<ContactsPageProp> = (props) => {
 
     const patchContactQuery = useMutation(
         ["contacts", props.id?.toString()],
-        (data: Contact) =>
-            saveContact(props.id as number, data, thisContact.current as Contact)
+        (newValue: Contact) =>
+            updateContact(props.id as number, {
+                newValue,
+                originalValue: thisContact.current as Contact
+            })
     )
 
     const { handleSubmit, register, reset: resetForm } = useForm<Contact>()
