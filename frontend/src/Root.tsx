@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import React from 'react'
+import "./Root.css"
 
 export default function Root() {
     return (
@@ -32,10 +33,13 @@ export default function Root() {
                 <nav>
                     <ul>
                         <li>
-                            <a href={`contacts/1`}>Contact 1</a>
+                            <a href={`/contacts/`}>Contacts</a>
                         </li>
                         <li>
-                            <a href={`contacts/2`}>Contact 2 (does not exist)</a>
+                            <a href={`/contacts/1`}>Contact 1</a>
+                        </li>
+                        <li>
+                            <a href={`/contacts/2`}>Contact 2 (does not exist)</a>
                         </li>
                     </ul>
                 </nav>

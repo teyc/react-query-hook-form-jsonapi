@@ -7,33 +7,13 @@ import {
   createBrowserRouter,
   RouterProvider,
   Route,
+  BrowserRouter,
+  Routes,
 } from "react-router-dom";
 import "./index.css";
 import Root from './Root';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ContactsListPage, ContactsPage } from './contacts';
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Root />,
-    children: [
-      {
-        path: "/",
-        element: <App />
-      },
-      {
-        path: "/contacts/",
-        element: <ContactsListPage />
-      },
-      {
-        path: "/contacts/:contactId",
-        element: <ContactsPage id={1} />
-      },
-    ]
-  },
-
-]);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -44,7 +24,15 @@ const reactQueryClient = new QueryClient()
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={reactQueryClient}>
-      <RouterProvider router={router} />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Root />}>
+            <Route path="" element={<App />} />
+            <Route path="contacts/" element={<ContactsListPage />} />
+            <Route path="contacts/:contactId" element={<ContactsPage id={1} />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </QueryClientProvider>
   </React.StrictMode>
 );
