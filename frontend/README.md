@@ -2,6 +2,6 @@
 
 ```
 $ yarn
-$ yarn @yarnpkg/sdks vscode
+$ yarn dlx @yarnpkg/sdks vscode
 $ yarn start
 ```

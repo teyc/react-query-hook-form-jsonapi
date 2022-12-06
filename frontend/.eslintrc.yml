@@ -1,0 +1,161 @@
+extends:
+  - eslint:recommended
+  - plugin:@typescript-eslint/recommended
+  - plugin:react/recommended
+  - plugin:unicorn/recommended
+  - plugin:jest/all
+  - plugin:jsx-a11y/recommended
+  - plugin:promise/recommended
+  - standard
+  - standard-react
+  - standard-with-typescript
+  - plugin:sonarjs/recommended
+  - plugin:jest-dom/recommended
+  - plugin:prettier/recommended
+  - plugin:storybook/recommended
+plugins:
+  - react-hooks
+  - prefer-arrow
+  - cypress
+  - '@typescript-eslint'
+parser: '@typescript-eslint/parser'
+parserOptions: 
+  project: 'tsconfig.json'
+env:
+  browser: true
+  node: true
+
+rules:
+  no-empty-pattern: 0
+  no-console: error
+  no-unused-vars: 1
+
+  '@typescript-eslint/explicit-function-return-type': off
+  '@typescript-eslint/explicit-module-boundary-types': off
+  '@typescript-eslint/consistent-type-assertions':
+    - error
+    - assertionStyle: 'as'
+  '@typescript-eslint/strict-boolean-expressions': 
+    - error
+    - 
+      allowString: true
+      allowNullableObject: true
+      allowNullableBoolean: true
+      allowNullableString: true
+  "@typescript-eslint/ban-types": 0
+  '@typescript-eslint/restrict-template-expressions': off
+
+  arrow-body-style: 
+      - error
+      - 'as-needed'
+  prefer-arrow-callback: error
+  prefer-arrow/prefer-arrow-functions: 
+      - error
+      - singleReturnOnly: true
+
+  react-hooks/rules-of-hooks: error
+  react-hooks/exhaustive-deps: warn
+  react/jsx-handler-names: off
+  react/display-name: off
+  react/prop-types: off
+  react/no-unused-prop-types: warn
+
+  unicorn/no-null: off
+  unicorn/no-reduce: off
+  unicorn/no-array-callback-reference: off
+  unicorn/no-array-reduce: off
+  unicorn/no-array-for-each: off
+  unicorn/no-thenable: off
+  unicorn/prevent-abbreviations: off
+  unicorn/numeric-separators-style: off
+  unicorn/prefer-spread: 1
+  unicorn/prefer-code-point: off
+
+  jest/prefer-expect-assertions: off
+  jest/no-hooks: off
+  jest/unbound-method: off
+
+  # ESLINT Upgrade - TODO: remove and fix errors/warnings as required
+  object-shorthand: off
+
+  '@typescript-eslint/no-misused-promises': off
+
+  jest/prefer-expect-resolves: off
+  jest/max-expects: off
+  jest-dom/prefer-in-document: off
+  jest/prefer-to-be: off
+  jest/prefer-snapshot-hint: off
+  jest/no-conditional-in-test: off
+  jest/require-hook: off
+
+  unicorn/no-useless-fallback-in-spread: off
+  unicorn/require-array-join-separator: off
+
+  # MUI/Component Library migration settings
+  no-restricted-imports:
+    - error
+    - paths:
+      - name: '@loanmarket/component-library'
+        message: "Please import from @material-ui/core/styles instead"
+        importNames:
+        - makeStyles
+        - createStyles
+        - StylesProvider
+        - createGenerateClassName
+        - Theme
+        - ThemeOptions
+        - useTheme
+        - createMuiTheme
+overrides: 
+  - files: 
+      - "*.js"
+    parser: 'babel-eslint'
+    rules: 
+      '@typescript-eslint/strict-boolean-expressions': off
+  - files: 
+      - "projects/**/*.spec.tsx"
+      - "projects/**/*.spec.ts"
+      - "src/**/*.spec.tsx"
+      - "src/**/*.spec.ts"
+    rules: 
+      no-magic-numbers: 0
+      "@typescript-eslint/no-magic-numbers": off
+      '@typescript-eslint/no-explicit-any': off
+      '@typescript-eslint/ban-types': off
+      unicorn/prevent-abbreviations: off
+      unicorn/no-array-reduce: off
+      unicorn/no-array-for-each: off
+      unicorn/no-array-callback-reference: off
+      sonarjs/no-duplicate-string: off
+      sonarjs/no-identical-functions: off
+      jest/unbound-method: error
+      react/display-name: off
+  - files: 
+      - "cypress/**/*"
+    parserOptions: 
+      project: 'cypress/tsconfig.json'
+    globals: 
+      cy: readonly
+      context: readonly
+      Cypress: readonly
+    rules: 
+      no-magic-numbers: 0
+      "@typescript-eslint/no-magic-numbers": off
+      unicorn/prevent-abbreviations: off
+      '@typescript-eslint/no-explicit-any': off
+      sonarjs/no-duplicate-string: off
+      sonarjs/no-identical-functions: off
+      '@typescript-eslint/ban-types': off
+      react/display-name: off
+      no-empty-pattern: 0
+      jest/consistent-test-it: off
+      jest/expect-expect: off
+      jest/require-top-level-describe: off
+      cypress/no-assigning-return-values: error
+      cypress/no-unnecessary-waiting: error
+      cypress/assertion-before-screenshot: warn
+      cypress/no-force: warn
+      cypress/no-async-tests: error
+      unicorn/no-array-reduce: off
+      unicorn/no-array-for-each: off
+      unicorn/no-array-callback-reference: off
