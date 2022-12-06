@@ -41,6 +41,9 @@ export default function Root() {
                         <li>
                             <a href={`/contacts/99`}>Contact 99 (does not exist)</a>
                         </li>
+                        <li>
+                            <a href={`/contacts/new`}>New...</a>
+                        </li>
                     </ul>
                 </nav>
             </div>

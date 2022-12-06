@@ -1,11 +1,11 @@
-import { FC, useCallback, useEffect, useRef } from "react"
+import React, { FC, useCallback, useEffect, useRef } from "react"
 import { useMutation, useQuery } from "react-query"
-import { getContact, updateContact as updateContact } from "../jsonapi/contact-service"
+import { createContact, getContact, updateContact } from "../jsonapi/contact-service"
 import { Contact } from "../jsonapi/contact"
 import { useForm } from "react-hook-form"
-import React from "react"
 import { useParams } from "react-router"
 import { AxiosError } from "axios"
+import { getFormFields } from "../jsonapi/contact-form-service"
 
 interface ContactsPageProp {
     unused?: string
@@ -14,8 +14,11 @@ interface ContactsPageProp {
 export const ContactsPage: FC<ContactsPageProp> = (props) => {
     const thisContact = useRef<Contact>()
 
-    const urlParams = useParams()
-    const id = urlParams["contactId"] ? parseInt(urlParams["contactId"]) : null
+    // get :contactId from route - either int or "new"
+    const routeParams = useParams()
+    const id = routeParams["contactId"] === 'new' || !routeParams["contactId"]
+        ? null
+        : parseInt(routeParams["contactId"])
 
     const {
         isLoading: getContactQueryIsLoading,
@@ -28,6 +31,11 @@ export const ContactsPage: FC<ContactsPageProp> = (props) => {
                 enabled: id != null,
             }
         )
+
+    const createContactQuery = useMutation(
+        ["contacts"],
+        (newValue: Contact) => createContact(newValue)
+    )
 
     const patchContactQuery = useMutation(
         ["contacts", id?.toString()],
@@ -50,7 +58,11 @@ export const ContactsPage: FC<ContactsPageProp> = (props) => {
 
     const onSubmit = useCallback(
         async (contact: Contact) => {
-            await patchContactQuery.mutateAsync(contact)
+            if (id != null) {
+                await patchContactQuery.mutateAsync(contact)
+            } else {
+                await createContactQuery.mutateAsync(contact)
+            }
         },
         [patchContactQuery]
     )
@@ -67,24 +79,33 @@ export const ContactsPage: FC<ContactsPageProp> = (props) => {
         </>)
     }
 
+    const title = typeof id == "number" ? `Contacts page ${id}` : "New contact"
+
+    const {
+        firstName,
+        lastName,
+        dateOfBirth,
+        nextOnlineMeeting,
+    } = getFormFields(register)
+
     return (
         <>
-            <h1>Contacts page {id}</h1>
+            <h1>{title}</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <label>First name</label>
-                <input {...register("firstName")} />
+                <input {...firstName} />
                 <br />
 
                 <label>Last name</label>
-                <input {...register("lastName")} />
+                <input {...lastName} />
                 <br />
 
                 <label>Date of birth</label>
-                <input {...register("dateOfBirth")} />
+                <input {...dateOfBirth} />
                 <br />
 
                 <label>Next online meeting</label>
-                <input {...register("nextOnlineMeeting")} />
+                <input {...nextOnlineMeeting} />
                 <br />
 
                 <input type="submit" />
