@@ -4,8 +4,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {
-  createBrowserRouter,
-  RouterProvider,
   Route,
   BrowserRouter,
   Routes,
@@ -29,7 +27,7 @@ root.render(
           <Route path="/" element={<Root />}>
             <Route path="" element={<App />} />
             <Route path="contacts/" element={<ContactsListPage />} />
-            <Route path="contacts/:contactId" element={<ContactsPage id={1} />} />
+            <Route path="contacts/:contactId" element={<ContactsPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

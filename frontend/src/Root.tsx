@@ -39,7 +39,7 @@ export default function Root() {
                             <a href={`/contacts/1`}>Contact 1</a>
                         </li>
                         <li>
-                            <a href={`/contacts/2`}>Contact 2 (does not exist)</a>
+                            <a href={`/contacts/99`}>Contact 99 (does not exist)</a>
                         </li>
                     </ul>
                 </nav>

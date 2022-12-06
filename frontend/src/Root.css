@@ -4,3 +4,10 @@
     width: 300px;
     padding: 4px;
 }
+
+#detail {
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    padding-top: 150px;
+}
