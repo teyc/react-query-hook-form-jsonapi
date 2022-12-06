@@ -12,6 +12,7 @@ import "./index.css";
 import { ContactsPage } from './contacts/ContactsPage';
 import Root from './Root';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { ContactsListPage } from './contacts/ContactsListPage';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <App />
+      },
+      {
+        path: "/contacts/",
+        element: <ContactsListPage />
       },
       {
         path: "/contacts/:contactId",

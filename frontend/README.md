@@ -8,8 +8,6 @@ $ yarn start
 
 # TODO Patterns
 
-- List
-
 - Create new
 
 - Save succeeded, toaster

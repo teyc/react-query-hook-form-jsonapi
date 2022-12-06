@@ -19,6 +19,16 @@ export const createContact = async (newValue: Contact) => {
   return response.data
 }
 
+export const getContacts = async () => {
+  const url = "http://localhost:5164/contacts/"
+  const response = await axios.get(url)
+  const contacts = transformFromJsonApiDocument<Contact[]>(
+    resourceType,
+    response.data
+  )
+  return contacts
+}
+
 export const getContact = async (id: number) => {
   const url = "http://localhost:5164/contacts/:id".replace(":id", id.toString())
   const response = await axios.get(url)
