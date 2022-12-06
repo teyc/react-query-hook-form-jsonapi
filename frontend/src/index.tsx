@@ -11,7 +11,7 @@ import {
 import "./index.css";
 import Root from './Root';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { ContactsListPage, ContactsPage } from './contacts';
+import { ContactsShell } from './contacts';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -26,8 +26,7 @@ root.render(
         <Routes>
           <Route path="/" element={<Root />}>
             <Route path="" element={<App />} />
-            <Route path="contacts/" element={<ContactsListPage />} />
-            <Route path="contacts/:contactId" element={<ContactsPage />} />
+            <Route path="contacts/*" element={<ContactsShell />} />
           </Route>
         </Routes>
       </BrowserRouter>
