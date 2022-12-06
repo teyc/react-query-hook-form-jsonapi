@@ -2820,7 +2820,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/qs@npm:*":
+"@types/qs@npm:*, @types/qs@npm:^6.9.7":
   version: 6.9.7
   resolution: "@types/qs@npm:6.9.7"
   checksum: 7fd6f9c25053e9b5bb6bc9f9f76c1d89e6c04f7707a7ba0e44cc01f17ef5284adb82f230f542c2d5557d69407c9a40f0f3515e8319afd14e1e16b5543ac6cdba
@@ -6378,6 +6378,7 @@ __metadata:
     "@types/jest": ^27.5.2
     "@types/json-api-serializer": ^2.6.3
     "@types/node": ^16.18.3
+    "@types/qs": ^6.9.7
     "@types/react": ^18.0.25
     "@types/react-dom": ^18.0.9
     "@types/testing-library__jest-dom": ^5.14.5
@@ -6386,6 +6387,7 @@ __metadata:
     eslint-config-react: ^1.1.7
     json-api-serializer: ^2.6.6
     prettier: ^2.8.0
+    qs: ^6.11.0
     react: ^18.2.0
     react-dom: ^18.2.0
     react-hook-form: ^7.40.0
@@ -10546,7 +10548,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"qs@npm:6.11.0":
+"qs@npm:6.11.0, qs@npm:^6.11.0":
   version: 6.11.0
   resolution: "qs@npm:6.11.0"
   dependencies:

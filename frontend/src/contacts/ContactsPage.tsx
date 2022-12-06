@@ -1,9 +1,8 @@
 import { FC, useCallback, useEffect, useRef } from "react"
-import { jsonApiSerializer } from "../jsonapi"
 import { useMutation, useQuery } from "react-query"
 import { getContact, saveContact } from "../jsonapi/contact-service"
 import { Contact } from "../jsonapi/contact"
-import { SubmitHandler, useForm } from "react-hook-form"
+import { useForm } from "react-hook-form"
 
 interface ContactsPageProp {
     id: number | null
@@ -30,13 +29,9 @@ export const ContactsPage: FC<ContactsPageProp> = (props) => {
 
     useEffect(() => {
         const contact = getContactQuery.data
-        console.log(contact)
         if (contact != null && thisContact.current !== contact) {
             thisContact.current = contact
             resetForm(contact)
-            console.log(
-                (jsonApiSerializer.serialize("contact", contact).data as any).attributes
-            )
         }
     })
 
