@@ -3,6 +3,7 @@ import { useMutation, useQuery } from "react-query"
 import { getContact, saveContact } from "../jsonapi/contact-service"
 import { Contact } from "../jsonapi/contact"
 import { useForm } from "react-hook-form"
+import React from "react"
 
 interface ContactsPageProp {
     id: number | null

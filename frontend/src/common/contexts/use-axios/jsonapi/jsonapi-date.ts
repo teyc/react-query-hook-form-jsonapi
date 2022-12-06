@@ -6,15 +6,13 @@ export function fromDateOnlyString(src: string) {
     return new Date(dateParts[0], dateParts[1] - 1, dateParts[2])
 }
 
-export function toISODateOnly(src: DateOnly) {
-    return src.toISOString().split('T')[0]
-}
+export const toISODateOnly = (src: DateOnly) => src.toISOString().split('T')[0];
 
 export function toISOLocal(d: Date) {
-    var z  = (n: number) =>  ('0' + n).slice(-2);
-    var zz = (n: number) => ('00' + n).slice(-3);
-    var off = d.getTimezoneOffset();
-    var sign = off > 0? '-' : '+';
+    const z  = (n: number) =>  ('0' + n).slice(-2);
+    const zz = (n: number) => ('00' + n).slice(-3);
+    let off = d.getTimezoneOffset();
+    const sign = off > 0? '-' : '+';
     off = Math.abs(off);
 
     return d.getFullYear() + '-'

@@ -2,24 +2,24 @@ extends:
   - eslint:recommended
   - plugin:@typescript-eslint/recommended
   - plugin:react/recommended
-  - plugin:unicorn/recommended
-  - plugin:jest/all
-  - plugin:jsx-a11y/recommended
-  - plugin:promise/recommended
-  - standard
-  - standard-react
-  - standard-with-typescript
-  - plugin:sonarjs/recommended
-  - plugin:jest-dom/recommended
-  - plugin:prettier/recommended
-  - plugin:storybook/recommended
+  # - plugin:unicorn/recommended
+  # - plugin:jest/all
+  # - plugin:jsx-a11y/recommended
+  # - plugin:promise/recommended
+  # - standard
+  # - standard-react
+  # - standard-with-typescript
+  # - plugin:sonarjs/recommended
+  # - plugin:jest-dom/recommended
+  # - plugin:prettier/recommended
+  # - plugin:storybook/recommended
 plugins:
   - react-hooks
   - prefer-arrow
-  - cypress
+  # - cypress
   - '@typescript-eslint'
 parser: '@typescript-eslint/parser'
-parserOptions: 
+parserOptions:
   project: 'tsconfig.json'
 env:
   browser: true
@@ -35,9 +35,9 @@ rules:
   '@typescript-eslint/consistent-type-assertions':
     - error
     - assertionStyle: 'as'
-  '@typescript-eslint/strict-boolean-expressions': 
+  '@typescript-eslint/strict-boolean-expressions':
     - error
-    - 
+    -
       allowString: true
       allowNullableObject: true
       allowNullableBoolean: true
@@ -45,11 +45,11 @@ rules:
   "@typescript-eslint/ban-types": 0
   '@typescript-eslint/restrict-template-expressions': off
 
-  arrow-body-style: 
+  arrow-body-style:
       - error
       - 'as-needed'
   prefer-arrow-callback: error
-  prefer-arrow/prefer-arrow-functions: 
+  prefer-arrow/prefer-arrow-functions:
       - error
       - singleReturnOnly: true
 
@@ -60,20 +60,20 @@ rules:
   react/prop-types: off
   react/no-unused-prop-types: warn
 
-  unicorn/no-null: off
-  unicorn/no-reduce: off
-  unicorn/no-array-callback-reference: off
-  unicorn/no-array-reduce: off
-  unicorn/no-array-for-each: off
-  unicorn/no-thenable: off
-  unicorn/prevent-abbreviations: off
-  unicorn/numeric-separators-style: off
-  unicorn/prefer-spread: 1
-  unicorn/prefer-code-point: off
+  # unicorn/no-null: off
+  # unicorn/no-reduce: off
+  # unicorn/no-array-callback-reference: off
+  # unicorn/no-array-reduce: off
+  # unicorn/no-array-for-each: off
+  # unicorn/no-thenable: off
+  # unicorn/prevent-abbreviations: off
+  # unicorn/numeric-separators-style: off
+  # unicorn/prefer-spread: 1
+  # unicorn/prefer-code-point: off
 
-  jest/prefer-expect-assertions: off
-  jest/no-hooks: off
-  jest/unbound-method: off
+  # jest/prefer-expect-assertions: off
+  # jest/no-hooks: off
+  # jest/unbound-method: off
 
   # ESLINT Upgrade - TODO: remove and fix errors/warnings as required
   object-shorthand: off
@@ -106,18 +106,18 @@ rules:
         - ThemeOptions
         - useTheme
         - createMuiTheme
-overrides: 
-  - files: 
+overrides:
+  - files:
       - "*.js"
     parser: 'babel-eslint'
-    rules: 
+    rules:
       '@typescript-eslint/strict-boolean-expressions': off
-  - files: 
+  - files:
       - "projects/**/*.spec.tsx"
       - "projects/**/*.spec.ts"
       - "src/**/*.spec.tsx"
       - "src/**/*.spec.ts"
-    rules: 
+    rules:
       no-magic-numbers: 0
       "@typescript-eslint/no-magic-numbers": off
       '@typescript-eslint/no-explicit-any': off
@@ -130,15 +130,15 @@ overrides:
       sonarjs/no-identical-functions: off
       jest/unbound-method: error
       react/display-name: off
-  - files: 
+  - files:
       - "cypress/**/*"
-    parserOptions: 
+    parserOptions:
       project: 'cypress/tsconfig.json'
-    globals: 
+    globals:
       cy: readonly
       context: readonly
       Cypress: readonly
-    rules: 
+    rules:
       no-magic-numbers: 0
       "@typescript-eslint/no-magic-numbers": off
       unicorn/prevent-abbreviations: off

@@ -210,36 +210,47 @@ export function jsonApiResponseTransformer<T>(
   return serializer.deserialize(resource, obj) as T
 }
 
-export function transformFromJsonApiDocument<T>(
+export const transformFromJsonApiDocument: <T>(
+  // eslint-disable-next-line no-unused-vars
   resource: JsonApiResource,
-  document: JSONAPIDocument,
-): T {
-  return serializer.deserialize(resource, document) as T
-}
+  // eslint-disable-next-line no-unused-vars
+  document: JSONAPIDocument
+) => T = (resource: JsonApiResource, document: JSONAPIDocument) =>
+  serializer.deserialize(resource, document)
 
-export function transformToPatchRequest<TResource>(id: number, resourceType: string, newValue: TResource, originalValue: TResource) {
-  const originalJson = serializer.serialize(resourceType, originalValue);
-  const newJson = serializer.serialize(resourceType, newValue);
+export function transformToPatchRequest<TResource>(
+  id: number,
+  resourceType: string,
+  newValue: TResource,
+  originalValue: TResource
+) {
+  const originalJson = serializer.serialize(resourceType, originalValue)
+  const newJson = serializer.serialize(resourceType, newValue)
 
-  const originalData = (originalJson.data as JSONAPISerializer.ResourceObject<TResource>).attributes as Omit<TResource, "id">;
-  const newData = (newJson.data as JSONAPISerializer.ResourceObject<TResource>).attributes as Omit<TResource, "id">;
+  const originalData = (
+    originalJson.data as JSONAPISerializer.ResourceObject<TResource>
+  ).attributes as Omit<TResource, "id">
+  const newData = (newJson.data as JSONAPISerializer.ResourceObject<TResource>)
+    .attributes as Omit<TResource, "id">
   const patch = Object.keys(newData).reduce((accum: any, currentKey) => {
-      const originalValue = (originalData as { [propName: string]: any; })[currentKey];
-      const newValue = (newData as { [propName: string]: any; })[currentKey];
-      if (JSON.stringify(originalValue) !== JSON.stringify(newValue)) {
-          return {
-              ...accum,
-              [currentKey]: (newData as { [propName: string]: any; })[currentKey]
-          };
-      } else {
-          return accum;
+    const originalValue = (originalData as { [propName: string]: any })[
+      currentKey
+    ]
+    const newValue = (newData as { [propName: string]: any })[currentKey]
+    if (JSON.stringify(originalValue) !== JSON.stringify(newValue)) {
+      return {
+        ...accum,
+        [currentKey]: (newData as { [propName: string]: any })[currentKey],
       }
-  }, {});
+    } else {
+      return accum
+    }
+  }, {})
   return {
-      ...newJson,
-      data: {
-          ...newJson.data,
-          attributes: patch
-      }
-  };
+    ...newJson,
+    data: {
+      ...newJson.data,
+      attributes: patch,
+    },
+  }
 }
