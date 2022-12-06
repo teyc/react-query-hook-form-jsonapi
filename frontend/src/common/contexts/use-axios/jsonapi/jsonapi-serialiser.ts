@@ -1,4 +1,4 @@
-import JSONAPISerializer from "json-api-serializer"
+import JSONAPISerializer, { JSONAPIDocument } from "json-api-serializer"
 import { stringify } from "qs"
 import {
   Filter,
@@ -210,6 +210,12 @@ export function jsonApiResponseTransformer<T>(
   return serializer.deserialize(resource, obj) as T
 }
 
+export function transformFromJsonApiDocument<T>(
+  resource: JsonApiResource,
+  document: JSONAPIDocument,
+): T {
+  return serializer.deserialize(resource, document) as T
+}
 
 export function transformToPatchRequest<TResource>(id: number, resourceType: string, newValue: TResource, originalValue: TResource) {
   const originalJson = serializer.serialize(resourceType, originalValue);
