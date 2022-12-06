@@ -9,10 +9,9 @@ import {
   Route,
 } from "react-router-dom";
 import "./index.css";
-import { ContactsPage } from './contacts/ContactsPage';
 import Root from './Root';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { ContactsListPage } from './contacts/ContactsListPage';
+import { ContactsListPage, ContactsPage } from './contacts';
 
 const router = createBrowserRouter([
   {
