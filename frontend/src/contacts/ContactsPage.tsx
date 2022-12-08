@@ -88,6 +88,7 @@ export const ContactsPage: FC<ContactsPageProp> = (props) => {
         nextOnlineMeeting,
     } = getFormFields(register)
 
+    /** jsx : begin */
     return (
         <>
             <h1>{title}</h1>
@@ -112,4 +113,5 @@ export const ContactsPage: FC<ContactsPageProp> = (props) => {
             </form>
         </>
     )
+    /** jsx : end */
 }
