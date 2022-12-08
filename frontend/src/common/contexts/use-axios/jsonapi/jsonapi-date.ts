@@ -6,15 +6,12 @@ export type DateOnly = Date
  * @param src
  * @returns
  */
-export function fromDateOnlyString(src: string | Date) {
-    if (src instanceof Date) return src
+export function fromDateOnlyString(src: string) {
     const dateParts = src.split('-').map(s => parseInt(s, 10))
     return new Date(dateParts[0], dateParts[1] - 1, dateParts[2])
 }
 
-export function fromDateString(src: string | Date | null): Date | null {
-    if (src == null) return src
-    if (src instanceof Date) return src
+export function fromDateString(src: string): Date | null {
     const date = new Date(src)
     return date instanceof Date && !isNaN(Number(date)) ? date : null
 }
