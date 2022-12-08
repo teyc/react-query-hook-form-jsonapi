@@ -14,7 +14,7 @@ $ yarn start
 
 - Save failed, toaster
 
-- Navigate away dirty record
+- Navigate away dirty record https://stackoverflow.com/questions/70573526/prevent-navigation-with-react-router-v6
 
 - Search
 
