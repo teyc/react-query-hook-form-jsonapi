@@ -14,7 +14,7 @@
 
 [CmdletBinding()]
 param (
-    [Parameter()]
+    [Parameter(Mandatory)]
     [string]
     $Path
 )
@@ -42,4 +42,4 @@ foreach ($line in $lines) {
     }
 }
 
-Out-File $outLines -Encoding utf8NoBOM
+($outLines -Join "`n") | Out-File $Path -Encoding utf8NoBOM
