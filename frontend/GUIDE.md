@@ -28,6 +28,7 @@
             </form>
         </>
     )
+// end:
 ```
 
 and put the view in a component
@@ -55,6 +56,7 @@ export interface Contact {
 }
 
 export const resourceType = "contacts"
+// end:
 ```
 
 ## 3. Write the mapping and validation
@@ -70,16 +72,20 @@ export const getFormFields = (register: UseFormRegister<Contact>) => ({
     dateOfBirth: register("dateOfBirth", { valueAsDate: true }),
     nextOnlineMeeting: register("nextOnlineMeeting", { valueAsDate: true }),
 })
+// end:
 ```
 
 ## 4. Register mapping and validation
 
 todo
 
+<!-- see: ../Format-CodeSnippet.ps1 how-to-insert -->
 ## Note
 
 This document contains generated section, to keep it up-to-date
 
 ```
-.\Format-CodeSnippet.ps1 .\frontend\GUIDE.md
+.\Format-CodeSnippet.ps1 .\path\to\this\file.md
 ```
+<!-- end: -->
+
