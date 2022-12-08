@@ -1,4 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Immutable;
+using System.ComponentModel.DataAnnotations.Schema;
+using JsonApiDotNetCore.Configuration;
+using JsonApiDotNetCore.Middleware;
+using JsonApiDotNetCore.Queries.Expressions;
 using JsonApiDotNetCore.Resources;
 using JsonApiDotNetCore.Resources.Annotations;
 
@@ -51,4 +55,17 @@ public class ContactDto: IDbTracked, IIdentifiable<int>
     [NotMapped]
     public string? LocalId { get; set; }
     
+}
+
+class ContactDtoResourceDefinition : JsonApiResourceDefinition<ContactDto, int>
+{
+    public ContactDtoResourceDefinition(IResourceGraph resourceGraph) : base(resourceGraph)
+    {
+    }
+
+    public override FilterExpression? OnApplyFilter(FilterExpression? existingFilter)
+    {
+        Thread.Sleep(2000);
+        return base.OnApplyFilter(existingFilter);
+    }
 }

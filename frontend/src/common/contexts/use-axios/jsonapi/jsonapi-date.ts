@@ -1,12 +1,20 @@
 
 export type DateOnly = Date
 
-export function fromDateOnlyString(src: string) {
+/**
+ * react-hook-form may try to call this on initialization
+ * @param src
+ * @returns
+ */
+export function fromDateOnlyString(src: string | Date) {
+    if (src instanceof Date) return src
     const dateParts = src.split('-').map(s => parseInt(s, 10))
     return new Date(dateParts[0], dateParts[1] - 1, dateParts[2])
 }
 
-export function fromDateString(src: string): Date | null {
+export function fromDateString(src: string | Date | null): Date | null {
+    if (src == null) return src
+    if (src instanceof Date) return src
     const date = new Date(src)
     return date instanceof Date && !isNaN(Number(date)) ? date : null
 }
