@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SampleWeb.DataAccess;
 
@@ -10,9 +11,11 @@ using SampleWeb.DataAccess;
 namespace SampleWeb.Migrations
 {
     [DbContext(typeof(MyCrmDbContext))]
-    partial class MyCrmDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221209125740_LoanSeedData")]
+    partial class LoanSeedData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.0");

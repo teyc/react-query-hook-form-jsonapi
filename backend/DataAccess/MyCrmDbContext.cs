@@ -58,5 +58,37 @@ public class MyCrmDbContext : DbContext
            }
         );
 
+        modelBuilder.Entity<ContactDto>().HasData(
+            new ContactDto
+            {
+                Id = 2,
+                CreatedDate = DateTime.Now,
+                CreatedUserId = "1",
+                DateOfBirth = new DateOnly(1985, 03, 05),
+                FirstName = "Minne",
+                LastName = "Driver",
+                IsActive = 1,
+                NextOnlineMeeting = null,
+            }
+        );
+
+        modelBuilder.Entity<LoanDto>().HasData(
+            new LoanDto
+            {
+                Id = 1,
+                CreatedDate = DateTime.Now,
+                CreatedUserId = "2",
+                IsActive = 1,
+                LoanAmount = 250_000.00M,
+            }
+        );
+
+        // seed many-to-many relationship
+        modelBuilder.Entity("ContactDtoLoanDto").HasData(
+            new { BorrowersId = 1, LoansId = 1 },
+            new { BorrowersId = 2, LoansId = 1 }
+        );
+
+
     }
 }
