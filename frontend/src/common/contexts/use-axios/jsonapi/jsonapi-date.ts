@@ -23,6 +23,8 @@ export function toISOLocal(d: Date | null) {
 
     if (d == null) return null
 
+    if (d instanceof Date && isNaN(Number(d))) return null
+
     const z = (n: number) => ('0' + n).slice(-2)
     const zz = (n: number) => ('00' + n).slice(-3)
     let off = d.getTimezoneOffset()

@@ -11,7 +11,7 @@ namespace SampleWeb.JsonApiResource;
 [Resource(PublicName = "contacts")]
 [Table("Contact")]
 // ReSharper disable once ClassNeverInstantiated.Global
-public class ContactDto: IDbTracked, IIdentifiable<int>
+public class ContactDto : IDbTracked, IIdentifiable<int>
 {
     [Column("ContactId")]
     public int Id { get; set; }
@@ -57,7 +57,7 @@ public class ContactDto: IDbTracked, IIdentifiable<int>
     public string? LocalId { get; set; }
 
     [HasMany]
-    public Collection<LoanDto> Loans { get; set; }
+    public Collection<LoanDto> Loans { get; set; } = new Collection<LoanDto>();
 
 }
 
