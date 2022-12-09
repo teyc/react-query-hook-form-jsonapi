@@ -17,9 +17,11 @@ export const createContact = async (newValue: Contact) => {
       "Content-Type": "application/vnd.api+json",
     },
   })
-
-  // TODO return something with the saved id, so that react-query key can be invalidated
-  return response.data
+  const contact = transformFromJsonApiDocument<Contact>(
+    resourceType,
+    response.data
+  )
+  return contact
 }
 
 export const getContacts = async () => {

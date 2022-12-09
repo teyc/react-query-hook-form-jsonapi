@@ -3,7 +3,7 @@ import { useMutation, useQuery } from "react-query"
 import { createContact, getContact, updateContact } from "../jsonapi/contact-service"
 import { Contact } from "../jsonapi/contact"
 import { useForm } from "react-hook-form"
-import { useParams } from "react-router"
+import { useNavigate, useParams } from "react-router"
 import { AxiosError } from "axios"
 import { getFormFields } from "../jsonapi/contact-form-service"
 
@@ -31,6 +31,8 @@ export const ContactsPage: FC<ContactsPageProp> = (props) => {
                 enabled: id != null,
             }
         )
+
+    const navigate = useNavigate()
 
     const createContactQuery = useMutation(
         ["contacts"],
@@ -61,10 +63,12 @@ export const ContactsPage: FC<ContactsPageProp> = (props) => {
             if (id != null) {
                 await patchContactQuery.mutateAsync(contact)
             } else {
-                await createContactQuery.mutateAsync(contact)
+                const createdContact = await createContactQuery.mutateAsync(contact)
+                thisContact.current = createdContact
+                navigate("/contacts/")
             }
         },
-        [patchContactQuery]
+        [createContactQuery, id, navigate, patchContactQuery]
     )
 
     if (getContactQueryIsLoading) {

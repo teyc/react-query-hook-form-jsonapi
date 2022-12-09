@@ -1,4 +1,5 @@
 ﻿using System.Collections.Immutable;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using JsonApiDotNetCore.Configuration;
 using JsonApiDotNetCore.Middleware;
@@ -31,7 +32,8 @@ public class ContactDto: IDbTracked, IIdentifiable<int>
     // IDbRecord
     public DateTimeOffset? LastModifiedDate { get; set; }
     public DateTimeOffset? CreatedDate { get; set; }
-    public string CreatedUserId { get; set; } = default!;
+
+    public string CreatedUserId { get; set; } = "invalid";
     public string? ModifiedUserId { get; set; }
 
     public int? IsActive { get; set; } = 1;
