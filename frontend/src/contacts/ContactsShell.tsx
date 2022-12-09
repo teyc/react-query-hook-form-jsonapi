@@ -1,18 +1,23 @@
 import 'react'
 import React, { FC } from 'react'
-import { Outlet, Route, Routes } from 'react-router';
-import { ContactsListPage } from './ContactsListPage';
-import { ContactsPage } from './ContactsPage';
+import { Route, Routes } from 'react-router'
+import { ContactsListPage } from './ContactsListPage'
+import { ContactsPage } from './ContactsPage'
+import { ErrorBoundary } from 'react-error-boundary'
 
 export const ContactsShell: FC<{}> = () => (
-    <React.Suspense fallback={
-        <div style={{ marginTop: '100px' }}>
-            Loading data ...
-        </div>
+    <ErrorBoundary fallback={
+        <div style={ { marginTop: '100px' } }>Error occurred</div>
     }>
-        <Routes>
-            <Route path="" element={<ContactsListPage />} />
-            <Route path=":contactId" element={<ContactsPage />} />
-        </Routes>
-    </React.Suspense>
+        <React.Suspense fallback={
+            <div style={{ marginTop: '100px' }}>
+                Loading data ...
+            </div>
+        }>
+            <Routes>
+                <Route path="" element={<ContactsListPage />} />
+                <Route path=":contactId" element={<ContactsPage />} />
+            </Routes>
+        </React.Suspense>
+    </ErrorBoundary>
 )
