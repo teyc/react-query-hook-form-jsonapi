@@ -15,19 +15,19 @@ public class ContactDto: IDbTracked, IIdentifiable<int>
 {
     [Column("ContactId")]
     public int Id { get; set; }
-    
+
     [Attr]
     public string? FirstName { get; set; }
-    
+
     [Attr]
     public string? LastName { get; set; }
-    
+
     [Attr]
     public DateOnly? DateOfBirth { get; set; }
-    
-    [Attr] 
+
+    [Attr]
     public DateTimeOffset? NextOnlineMeeting { get; set; }
-    
+
     // IDbRecord
     public DateTimeOffset? LastModifiedDate { get; set; }
     public DateTimeOffset? CreatedDate { get; set; }
@@ -35,7 +35,7 @@ public class ContactDto: IDbTracked, IIdentifiable<int>
     public string? ModifiedUserId { get; set; }
 
     public int? IsActive { get; set; } = 1;
-    
+
     [NotMapped]
     // IIdentifiable
     public string? StringId
@@ -54,7 +54,7 @@ public class ContactDto: IDbTracked, IIdentifiable<int>
     /// <see href="https://jsonapi.org/format/#document-resource-object-identification"/>
     [NotMapped]
     public string? LocalId { get; set; }
-    
+
 }
 
 class ContactDtoResourceDefinition : JsonApiResourceDefinition<ContactDto, int>
@@ -67,5 +67,22 @@ class ContactDtoResourceDefinition : JsonApiResourceDefinition<ContactDto, int>
     {
         Thread.Sleep(2000);
         return base.OnApplyFilter(existingFilter);
+    }
+
+    public override Task OnWritingAsync(ContactDto resource, WriteOperationKind writeOperation, CancellationToken cancellationToken)
+    {
+        if (writeOperation == WriteOperationKind.CreateResource)
+        {
+            resource.CreatedUserId = "admin";
+            resource.CreatedDate = DateTime.Now;
+        }
+
+        if (writeOperation == WriteOperationKind.UpdateResource)
+        {
+            resource.ModifiedUserId = "admin";
+            resource.LastModifiedDate = DateTime.Now;
+        }
+
+        return base.OnWritingAsync(resource, writeOperation, cancellationToken);
     }
 }
