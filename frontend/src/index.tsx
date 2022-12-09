@@ -17,7 +17,11 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 )
 
-const reactQueryClient = new QueryClient()
+const reactQueryClient = new QueryClient( { defaultOptions : {
+  queries: {
+    suspense: true
+  }
+}})
 
 root.render(
   <React.StrictMode>

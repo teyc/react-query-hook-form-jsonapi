@@ -5,8 +5,10 @@ import { ContactsListPage } from './ContactsListPage';
 import { ContactsPage } from './ContactsPage';
 
 export const ContactsShell: FC<{}> = () => (
-    <Routes>
-        <Route path="" element={<ContactsListPage />} />
-        <Route path=":contactId" element={<ContactsPage />} />
-    </Routes>
+    <React.Suspense>
+        <Routes>
+            <Route path="" element={<ContactsListPage />} />
+            <Route path=":contactId" element={<ContactsPage />} />
+        </Routes>
+    </React.Suspense>
 )
