@@ -59,3 +59,11 @@ export const updateContact = async (
     },
   })
 }
+
+
+export const deleteContact = async(
+  id: string
+) => {
+  const url = "http://localhost:5164/contacts/:id".replace(":id", id.toString())
+  return await axios.delete(url)
+}
