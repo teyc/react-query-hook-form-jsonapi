@@ -39,6 +39,9 @@ public class MyCrmDbContext : DbContext
 
     public virtual DbSet<ContactDto> Contacts { get; set; } = default!;
 
+    public virtual DbSet<LoanDto> LoanDtos { get; set; } = default!;
+
+
     private void SeedData(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<ContactDto>().HasData(

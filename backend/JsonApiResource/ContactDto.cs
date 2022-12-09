@@ -1,5 +1,4 @@
-﻿using System.Collections.Immutable;
-using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using JsonApiDotNetCore.Configuration;
 using JsonApiDotNetCore.Middleware;
@@ -56,6 +55,9 @@ public class ContactDto: IDbTracked, IIdentifiable<int>
     /// <see href="https://jsonapi.org/format/#document-resource-object-identification"/>
     [NotMapped]
     public string? LocalId { get; set; }
+
+    [HasMany]
+    public Collection<LoanDto> Loans { get; set; }
 
 }
 
