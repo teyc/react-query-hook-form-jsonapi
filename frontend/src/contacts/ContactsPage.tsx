@@ -81,12 +81,14 @@ export const ContactsPage: FC<ContactsPageProp> = (props) => {
 
     const title = typeof id == "number" ? `Contacts page ${id}` : "New contact"
 
+    /** register-form-fields : begin */
     const {
         firstName,
         lastName,
         dateOfBirth,
         nextOnlineMeeting,
     } = getFormFields(register)
+    /** register-form-fields : end */
 
     /** jsx : begin */
     return (
