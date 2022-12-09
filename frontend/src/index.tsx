@@ -19,7 +19,7 @@ const root = ReactDOM.createRoot(
 
 const reactQueryClient = new QueryClient( { defaultOptions : {
   queries: {
-    suspense: true
+    suspense: false /* 'true' doesn't work when data fetching fails */
   }
 }})
 

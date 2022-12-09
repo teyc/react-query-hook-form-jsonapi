@@ -5,7 +5,11 @@ import { ContactsListPage } from './ContactsListPage';
 import { ContactsPage } from './ContactsPage';
 
 export const ContactsShell: FC<{}> = () => (
-    <React.Suspense>
+    <React.Suspense fallback={
+        <div style={{ marginTop: '100px' }}>
+            Loading data ...
+        </div>
+    }>
         <Routes>
             <Route path="" element={<ContactsListPage />} />
             <Route path=":contactId" element={<ContactsPage />} />
