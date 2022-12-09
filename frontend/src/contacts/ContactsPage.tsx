@@ -4,7 +4,6 @@ import { createContact, getContact, updateContact } from "../jsonapi/contact-ser
 import { Contact } from "../jsonapi/contact"
 import { useForm } from "react-hook-form"
 import { useNavigate, useParams } from "react-router"
-import { AxiosError } from "axios"
 import { getFormFields } from "../jsonapi/contact-form-service"
 
 interface ContactsPageProp {
@@ -20,19 +19,15 @@ export const ContactsPage: FC<ContactsPageProp> = (props) => {
         ? null
         : parseInt(routeParams["contactId"])
 
-    const {
-        isLoading: getContactQueryIsLoading,
-        isError: getContactQueryIsError,
-        data: getContactQueryData,
-        error: getContactQueryError } = useQuery<Contact>(
-            ["contacts", id?.toString()],
-            () => getContact(id as number),
-            {
-                enabled: id != null,
-            }
-        )
-
     const navigate = useNavigate()
+
+    const { data: getContactQueryData } = useQuery<Contact>(
+        ["contacts", id?.toString()],
+        () => getContact(id as number),
+        {
+            enabled: id != null,
+        }
+    )
 
     const createContactQuery = useMutation(
         ["contacts"],
@@ -70,18 +65,6 @@ export const ContactsPage: FC<ContactsPageProp> = (props) => {
         },
         [createContactQuery, id, navigate, patchContactQuery]
     )
-
-    if (getContactQueryIsLoading) {
-        return (<>
-            <div>Loading ...</div>
-        </>)
-    }
-
-    if (getContactQueryIsError) {
-        return (<>
-            <div>Error {(getContactQueryError as AxiosError)?.message as string}</div>
-        </>)
-    }
 
     const title = typeof id == "number" ? `Contacts page ${id}` : "New contact"
 
