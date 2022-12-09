@@ -21,6 +21,13 @@ export const ContactsPage: FC<ContactsPageProp> = (props) => {
 
     const navigate = useNavigate()
 
+    // CREATE
+    const createContactQuery = useMutation(
+        ["contacts"],
+        (newValue: Contact) => createContact(newValue)
+    )
+
+    // READ
     const { data: getContactQueryData } = useQuery<Contact>(
         ["contacts", id?.toString()],
         () => getContact(id as number),
@@ -29,11 +36,7 @@ export const ContactsPage: FC<ContactsPageProp> = (props) => {
         }
     )
 
-    const createContactQuery = useMutation(
-        ["contacts"],
-        (newValue: Contact) => createContact(newValue)
-    )
-
+    // UPDATE
     const patchContactQuery = useMutation(
         ["contacts", id?.toString()],
         (newValue: Contact) =>
@@ -69,12 +72,7 @@ export const ContactsPage: FC<ContactsPageProp> = (props) => {
     const title = typeof id == "number" ? `Contacts page ${id}` : "New contact"
 
     /** register-form-fields : begin */
-    const {
-        firstName,
-        lastName,
-        dateOfBirth,
-        nextOnlineMeeting,
-    } = getFormFields(register)
+    const form = getFormFields(register)
     /** register-form-fields : end */
 
     /** jsx : begin */
@@ -83,19 +81,19 @@ export const ContactsPage: FC<ContactsPageProp> = (props) => {
             <h1>{title}</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <label>First name</label>
-                <input {...firstName} />
+                <input {...form.firstName} />
                 <br />
 
                 <label>Last name</label>
-                <input {...lastName} />
+                <input {...form.lastName} />
                 <br />
 
                 <label>Date of birth</label>
-                <input {...dateOfBirth} />
+                <input {...form.dateOfBirth} />
                 <br />
 
                 <label>Next online meeting</label>
-                <input {...nextOnlineMeeting} />
+                <input {...form.nextOnlineMeeting} />
                 <br />
 
                 <input type="submit" />
