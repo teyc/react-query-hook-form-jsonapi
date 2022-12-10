@@ -18,19 +18,23 @@ export const ContactsPage: FC<{}> = (props) => {
             <h1>{title}</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <label>First name</label>
-                <input {...firstName} />
+                <input {...form.firstName} />
+                {errors.firstName && (<>this is required</>)}
                 <br />
 
                 <label>Last name</label>
-                <input {...lastName} />
+                <input {...form.lastName} />
+                {errors.lastName && (<>this is required</>)}
                 <br />
 
                 <label>Date of birth</label>
-                <input {...dateOfBirth} />
+                <input {...form.dateOfBirth} />
+                {errors.dateOfBirth && (<>valid format is...</>)}
                 <br />
 
                 <label>Next online meeting</label>
-                <input {...nextOnlineMeeting} />
+                <input {...form.nextOnlineMeeting} />
+                {errors.nextOnlineMeeting && (<>valid format is ...</>)}
                 <br />
 
                 <input type="submit" />
@@ -77,9 +81,9 @@ import { UseFormRegister } from "react-hook-form";
 import { Contact } from "./contact";
 
 export const getFormFields = (register: UseFormRegister<Contact>) => ({
-    firstName: register('firstName'),
-    lastName: register('lastName'),
-    dateOfBirth: register("dateOfBirth", { valueAsDate: true }),
+    firstName: register('firstName', { required: true }),
+    lastName: register('lastName', { required: true }),
+    dateOfBirth: register("dateOfBirth", { valueAsDate: true, required: true }),
     nextOnlineMeeting: register("nextOnlineMeeting", { valueAsDate: true }),
 })
 // end:
@@ -94,12 +98,7 @@ with react-hook-form
     const { register, } = useForm<Contact>()
 
 // see: ./src/contacts/ContactsPage.tsx register-form-fields
-    const {
-        firstName,
-        lastName,
-        dateOfBirth,
-        nextOnlineMeeting,
-    } = getFormFields(register)
+    const form = getFormFields(register)
 // end:
 ```
 
