@@ -17,7 +17,7 @@ public class LoanDto : IDbTracked, IIdentifiable<int>
     public decimal? LoanAmount { get; set; }
 
     [Attr]
-    public Collection<ContactDto> Borrowers { get; set; }
+    public ISet<ContactDto> Borrowers { get; set; } = new HashSet<ContactDto>();
 
     public DateTimeOffset? LastModifiedDate { get; set; }
     public DateTimeOffset? CreatedDate { get; set; }

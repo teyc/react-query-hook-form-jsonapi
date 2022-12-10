@@ -57,7 +57,7 @@ public class ContactDto : IDbTracked, IIdentifiable<int>
     public string? LocalId { get; set; }
 
     [HasMany]
-    public Collection<LoanDto> Loans { get; set; } = new Collection<LoanDto>();
+    public ISet<LoanDto> Loans { get; set; } = new HashSet<LoanDto>();
 
 }
 
