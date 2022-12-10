@@ -82,18 +82,22 @@ export const ContactsPage: FC<ContactsPageProp> = (props) => {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <label>First name</label>
                 <input {...form.firstName} />
+                {errors.firstName && (<>this is required</>)}
                 <br />
 
                 <label>Last name</label>
                 <input {...form.lastName} />
+                {errors.lastName && (<>this is required</>)}
                 <br />
 
                 <label>Date of birth</label>
                 <input {...form.dateOfBirth} />
+                {errors.dateOfBirth && (<>valid format is...</>)}
                 <br />
 
                 <label>Next online meeting</label>
                 <input {...form.nextOnlineMeeting} />
+                {errors.nextOnlineMeeting && (<>valid format is ...</>)}
                 <br />
 
                 <input type="submit" />

@@ -4,6 +4,11 @@ import { toISODateOnly, toISOLocal, fromDateOnlyString } from "../common/context
 
 export const contactSchema: JSONAPISerializer.Options = {
     id: "id",
+    relationships: {
+        loans: {
+            type: "loans"
+        }
+    },
     beforeSerialize: (entity) => {
         const entity1 = entity as Contact
         const json = {
