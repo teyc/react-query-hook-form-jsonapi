@@ -6,21 +6,7 @@ import { useForm } from "react-hook-form"
 import { useNavigate, useParams } from "react-router"
 import { getFormFields } from "../jsonapi/contact-form-service"
 
-interface ContactsPageProp {
-    unused?: string
-}
-
-export const ContactsPage: FC<ContactsPageProp> = (props) => {
-    const thisContact = useRef<Contact>()
-
-    // get :contactId from route - either int or "new"
-    const routeParams = useParams()
-    const id = routeParams["contactId"] === 'new' || !routeParams["contactId"]
-        ? null
-        : parseInt(routeParams["contactId"])
-
-    const navigate = useNavigate()
-
+function useCrudService(id: number | null, thisContact: React.MutableRefObject<Contact | undefined>) {
     // CREATE
     const createContactQuery = useMutation(
         ["contacts"],
@@ -46,7 +32,28 @@ export const ContactsPage: FC<ContactsPageProp> = (props) => {
             })
     )
 
-    const { handleSubmit, register, reset: resetForm } = useForm<Contact>()
+    return { createContactQuery, getContactQueryData, patchContactQuery }
+}
+
+
+interface ContactsPageProp {
+    unused?: string
+}
+
+export const ContactsPage: FC<ContactsPageProp> = (props) => {
+    const thisContact = useRef<Contact>()
+
+    // get :contactId from route - either int or "new"
+    const routeParams = useParams()
+    const id = routeParams["contactId"] === 'new' || !routeParams["contactId"]
+        ? null
+        : parseInt(routeParams["contactId"])
+
+    const navigate = useNavigate()
+
+    const { createContactQuery, getContactQueryData, patchContactQuery } = useCrudService(id, thisContact)
+
+    const { formState: { errors }, handleSubmit, register, reset: resetForm } = useForm<Contact>()
 
     useEffect(() => {
         const contact = getContactQueryData
