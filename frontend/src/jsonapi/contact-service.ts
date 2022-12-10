@@ -9,6 +9,7 @@ import {
 } from "../common/contexts/use-axios/jsonapi/jsonapi-serialiser"
 import { Contact, resourceType } from "./contact"
 
+// CREATE
 export const createContact = async (newValue: Contact) => {
   const url = "http://localhost:5164/contacts/"
   const request = transformToPostRequest(resourceType, newValue)
@@ -24,9 +25,14 @@ export const createContact = async (newValue: Contact) => {
   return contact
 }
 
+// READ
 export const getContacts = async () => {
-  const url = "http://localhost:5164/contacts/"
-  const response = await axios.get(url)
+  const url = "http://localhost:5164/contacts/?include=loans"
+  const response = await axios.get(url, {
+    headers: {
+      "Accept": "application/vnd.api+json"
+    }
+  })
   const contacts = transformFromJsonApiDocument<Contact[]>(
     resourceType,
     response.data
@@ -34,8 +40,9 @@ export const getContacts = async () => {
   return contacts
 }
 
+// READ
 export const getContact = async (id: number) => {
-  const url = "http://localhost:5164/contacts/:id".replace(":id", id.toString())
+  const url = "http://localhost:5164/contacts/:id?include=loans".replace(":id", id.toString())
   const response = await axios.get(url)
   const contact = transformFromJsonApiDocument<Contact>(
     resourceType,
@@ -44,6 +51,7 @@ export const getContact = async (id: number) => {
   return contact
 }
 
+// UPDATE
 export const updateContact = async (
   id: number,
   { newValue, originalValue }: { newValue: Contact; originalValue: Contact }
@@ -62,8 +70,8 @@ export const updateContact = async (
   })
 }
 
-
-export const deleteContact = async(
+// DELETE
+export const deleteContact = async (
   id: string
 ) => {
   const url = "http://localhost:5164/contacts/:id".replace(":id", id.toString())
