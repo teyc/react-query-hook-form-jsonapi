@@ -7,6 +7,7 @@ import { useNavigate, useParams } from "react-router"
 import { getFormFields } from "../jsonapi/contact-form-service"
 
 function useCrudService(id: number | null, thisContact: React.MutableRefObject<Contact | undefined>) {
+
     // CREATE
     const createContactQuery = useMutation(
         ["contacts"],
@@ -53,13 +54,28 @@ export const ContactsPage: FC<ContactsPageProp> = (props) => {
 
     const { createContactQuery, getContactQueryData, patchContactQuery } = useCrudService(id, thisContact)
 
-    const { formState: { errors }, handleSubmit, register, reset: resetForm } = useForm<Contact>()
+    const { formState: { errors, isDirty }, handleSubmit, register, reset: resetForm } = useForm<Contact>()
 
     useEffect(() => {
         const contact = getContactQueryData
         if (contact != null && thisContact.current !== contact) {
             thisContact.current = contact
             resetForm(contact)
+        }
+    })
+
+    const onNavigateAwayFromDirtyForm = useCallback((e: Event) => {
+        if (isDirty) {
+            e.preventDefault()
+            return "There are unsaved unchanges. Is it ok to discard?"
+        }
+    }, [isDirty])
+
+    // initialize
+    useEffect(() => {
+        window.onbeforeunload = onNavigateAwayFromDirtyForm
+        return () => {
+            window.onbeforeunload = null
         }
     })
 
@@ -70,7 +86,7 @@ export const ContactsPage: FC<ContactsPageProp> = (props) => {
             } else {
                 const createdContact = await createContactQuery.mutateAsync(contact)
                 thisContact.current = createdContact
-                navigate("/contacts/")
+                navigate(`/contacts/${createdContact.id}`)
             }
         },
         [createContactQuery, id, navigate, patchContactQuery]
