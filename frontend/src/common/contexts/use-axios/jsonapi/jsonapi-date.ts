@@ -12,7 +12,7 @@ export function fromDateOnlyString(src: string) {
 }
 
 export function fromDateString(src: string): Date | null {
-    const date = new Date(src)
+    const date = src != null ? new Date(src) : null
     return date instanceof Date && !isNaN(Number(date)) ? date : null
 }
 

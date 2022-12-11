@@ -1,6 +1,6 @@
 import JSONAPISerializer from "json-api-serializer"
 import { Contact } from "./contact"
-import { toISODateOnly, toISOLocal, fromDateOnlyString } from "../common/contexts/use-axios/jsonapi/jsonapi-date"
+import { toISODateOnly, toISOLocal, fromDateOnlyString, fromDateString } from "../common/contexts/use-axios/jsonapi/jsonapi-date"
 
 export const contactSchema: JSONAPISerializer.Options = {
     id: "id",
@@ -28,7 +28,7 @@ export const contactSchema: JSONAPISerializer.Options = {
         const entity = {
             ...json,
             dateOfBirth: fromDateOnlyString(json.dateOfBirth),
-            nextOnlineMeeting: new Date(json.nextOnlineMeeting),
+            nextOnlineMeeting: fromDateString(json.nextOnlineMeeting),
         }
         return entity
     },
