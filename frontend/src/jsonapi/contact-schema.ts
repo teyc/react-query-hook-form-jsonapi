@@ -4,6 +4,12 @@ import { toISODateOnly, toISOLocal, fromDateOnlyString } from "../common/context
 
 export const contactSchema: JSONAPISerializer.Options = {
     id: "id",
+    whitelist: [
+        "firstName",
+        "lastName",
+        "dateOfBirth",
+        "nextOnlineMeeting"
+    ],
     relationships: {
         loans: {
             type: "loans"

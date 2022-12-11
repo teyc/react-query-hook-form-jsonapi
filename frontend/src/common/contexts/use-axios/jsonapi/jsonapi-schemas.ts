@@ -1,9 +1,11 @@
 import { Options } from 'json-api-serializer'
 import { contactSchema } from '../../../../jsonapi/contact-schema'
+import { loanSchema } from '../../../../jsonapi/loan-schema'
 
 export type JsonApiResource =
   | 'insurance-file'
   | 'contacts'
+  | 'loans'
 
 const insuranceFileSchema = {
   id: 'id',
@@ -24,4 +26,5 @@ const insuranceFileSchema = {
 export const schemas: Record<JsonApiResource, Options> = {
   'insurance-file': insuranceFileSchema,
   'contacts': contactSchema,
+  'loans': loanSchema,
 }
