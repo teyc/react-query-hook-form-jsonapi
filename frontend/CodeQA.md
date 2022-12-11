@@ -4,34 +4,34 @@
 
 ```jsx
 // see: src\contacts\ContactsPage.tsx jsx
-return (
-  <>
-    <h1>{title}</h1>
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <label htmlFor="firstName">First name</label>
-      <input {...form.firstName} id="firstName" />
-      {errors.firstName && <>this is required</>}
-      <br />
+    return (
+        <>
+            <h1>{title}</h1>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <label htmlFor="firstName">First name</label>
+                <input {...form.firstName} id="firstName" />
+                {errors.firstName && (<>this is required</>)}
+                <br />
 
-      <label htmlFor="lastName">Last name</label>
-      <input {...form.lastName} id="lastName" />
-      {errors.lastName && <>this is required</>}
-      <br />
+                <label htmlFor="lastName">Last name</label>
+                <input {...form.lastName} id="lastName" />
+                {errors.lastName && (<>this is required</>)}
+                <br />
 
-      <label htmlFor="dateOfBirth">Date of birth</label>
-      <input {...form.dateOfBirth} id="dateOfBirth" />
-      {errors.dateOfBirth && <>valid format is...</>}
-      <br />
+                <label htmlFor="dateOfBirth">Date of birth</label>
+                <input {...form.dateOfBirth} id="dateOfBirth" />
+                {errors.dateOfBirth && (<>valid format is...</>)}
+                <br />
 
-      <label htmlFor="nextOnlineMeeting">Next online meeting</label>
-      <input {...form.nextOnlineMeeting} id="nextOnlineMeeting" />
-      {errors.nextOnlineMeeting && <>valid format is ...</>}
-      <br />
+                <label htmlFor="nextOnlineMeeting" >Next online meeting</label>
+                <input {...form.nextOnlineMeeting} id="nextOnlineMeeting" />
+                {errors.nextOnlineMeeting && (<>valid format is ...</>)}
+                <br />
 
-      <input type="submit" />
-    </form>
-  </>
-)
+                <input type="submit" />
+            </form>
+        </>
+    )
 // end:
 ```
 
@@ -51,37 +51,36 @@ return (
 // see: src\jsonapi\contact-schema.ts *full*
 import JSONAPISerializer from "json-api-serializer"
 import { Contact } from "./contact"
-import {
-  toISODateOnly,
-  toISOLocal,
-  fromDateOnlyString,
-  fromDateString,
-} from "../common/contexts/use-axios/jsonapi/jsonapi-date"
+import { toISODateOnly, toISOLocal, fromDateOnlyString, fromDateString } from "../common/contexts/use-axios/jsonapi/jsonapi-date"
 
 export const contactSchema: JSONAPISerializer.Options = {
-  id: "id",
-  whitelist: ["firstName", "lastName", "dateOfBirth", "nextOnlineMeeting"],
-  relationships: {
-    loans: {
-      type: "loans",
+    id: "id",
+    whitelist: [
+        "firstName",
+        "lastName",
+        "dateOfBirth",
+        "nextOnlineMeeting"
+    ],
+    relationships: {
+        loans: {
+            type: "loans"
+        }
     },
-  },
-  beforeSerialize: (entity) => {
-    const entity1 = entity as Contact
-    const json = {
-      ...entity1,
-      dateOfBirth: toISODateOnly(entity1.dateOfBirth),
-      nextOnlineMeeting: toISOLocal(entity1.nextOnlineMeeting),
-    }
-    return json
-  },
-  afterDeserialize: (json: any) => {
-    const entity = {
-      ...json,
-      dateOfBirth: fromDateOnlyString(json.dateOfBirth),
-      nextOnlineMeeting: fromDateString(json.nextOnlineMeeting),
-    }
-    return entity
-  },
+    beforeSerialize: (entity) => {
+        const entity1 = entity as Contact
+        const json = {
+            ...entity1,
+            dateOfBirth: toISODateOnly(entity1.dateOfBirth),
+            nextOnlineMeeting: toISOLocal(entity1.nextOnlineMeeting),
+        }
+        return json
+    },
+    afterDeserialize: (json: any) => {
+        const entity = {
+            ...json,
+            dateOfBirth: fromDateOnlyString(json.dateOfBirth),
+            nextOnlineMeeting: fromDateString(json.nextOnlineMeeting),
+        }
+        return entity
+    },
 }
-```
