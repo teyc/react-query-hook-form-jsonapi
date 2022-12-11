@@ -72,14 +72,20 @@ foreach ($line in $lines) {
     # e.g. '// see: ./path/to/SomeClass.cs block-name'
     if ($line -match "(^\S+ see:) (\S+) (\S+)") {
 
+        if ($isInsertingCodeSnippet) {
+            # Shouldn't be happening
+            Write-Error "Expecting '$endMarker' but found '$line' instead"
+        }
+
+        $isInsertingCodeSnippet = $true
+
         # e.g. // see:
         $startMarker = $Matches[1]
-        Write-Verbose "startMarker: '$startMarker'"
+        Write-Verbose "startMarker: '$startMarker' in '$line'"
 
         # e.g. // end:
         $endMarker = "^" + ($startMarker -replace ('see:', 'end:'))
         Write-Verbose "endMarker: '$endMarker'"
-        $isInsertingCodeSnippet = $true
 
         # e.g. ./path/to/SomeClass.cs , calculate relative paths
         $sourcePath = $Matches[2]
@@ -118,6 +124,12 @@ foreach ($line in $lines) {
             }
         }
     }
+}
+
+# after the last line is processed, and we are still looking for the end marker
+# something is wrong
+If ($isInsertingCodeSnippet) {
+    $outLines += $endMarker.Substring(1) # strip off leading ^
 }
 
 If ($DryRun) {

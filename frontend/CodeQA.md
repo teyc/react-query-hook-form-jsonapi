@@ -84,3 +84,5 @@ export const contactSchema: JSONAPISerializer.Options = {
         return entity
     },
 }
+// end:
+```
