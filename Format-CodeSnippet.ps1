@@ -28,7 +28,7 @@ This document contains generated section, to keep it up-to-date
 
 .EXAMPLE
     ./Format-CodeSnippet.ps1 -DryRun MyMarkdownFile.md
-    
+
     Sends the output to standard output instead of overwriting the file
 #>
 
@@ -45,6 +45,8 @@ param (
 
 )
 
+$ErrorActionPreference = 'Stop'
+
 $lines = Get-Content $Path
 $outLines = @()
 $isInsertingCodeSnippet = $false
@@ -53,7 +55,8 @@ foreach ($line in $lines) {
 
     if (-Not $isInsertingCodeSnippet) {
         $outLines += $line
-    } elseif ($isInsertingCodeSnippet -and $line -match $endMarker) {
+    }
+    elseif ($isInsertingCodeSnippet -and $line -match $endMarker) {
         Write-Verbose "Found: '$endMarker'"
         $outLines += $line
         $isInsertingCodeSnippet = $false
@@ -73,7 +76,8 @@ foreach ($line in $lines) {
 
         # e.g. ./path/to/SomeClass.cs , calculate relative paths
         $sourcePath = $Matches[2]
-        $sourcePath = Join-Path -Resolve (Split-Path -Parent $Path) $sourcePath
+        $directory = Split-Path -Parent (Resolve-Path $Path)
+        $sourcePath = Join-Path -Resolve $directory $sourcePath
         Write-Verbose "sourcePath: '$sourcePath'"
 
         # e.g. block-name
@@ -91,14 +95,19 @@ foreach ($line in $lines) {
         else {
             $source = Get-Content $sourcePath
             $snippet = $source. `
-                Where({ $_ -Match "$blockName : begin" }, 'SkipUntil'). `
-                Where({ $_ -Match "$blockName : end" }, "Until")
+                Where({ $_ -Match "$([regex]::Escape($blockName)) : begin" }, 'SkipUntil'). `
+                Where({ $_ -Match "$([regex]::Escape($blockName)) : end" }, "Until")
 
             $firstItem, $rest = $snippet
             $outLines += $rest
 
             If ($rest.Length -eq 0) {
-               Write-Warning "$sourcePath does not contain '$blockName : begin'"
+                Write-Warning "$sourcePath does not contain '$blockName : begin'"
+            }
+
+            if ($rest | Where-Object { $_ -match "\S+ : begin" }) {
+                $unexpected = $Matches[0]
+                Write-Error "Expecting '$blockName : end' in $sourcePath but found '$unexpected' instead."
             }
         }
     }
@@ -106,6 +115,7 @@ foreach ($line in $lines) {
 
 If ($DryRun) {
     Write-Output ($outLines -Join "`n")
-} else {
+}
+else {
     ($outLines -Join "`n") | Out-File $Path -Encoding utf8NoBOM
 }
