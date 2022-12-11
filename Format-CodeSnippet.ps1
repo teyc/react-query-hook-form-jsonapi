@@ -8,7 +8,16 @@
 .LINK
     Specify a URI to a help page, this will show when Get-Help -Online is used.
 .EXAMPLE
-    You'd like to insert the following snippet into a file called MyMarkdownFile.md:
+    Step 1: In YourMarkdownFile.md, add `see: path/to/SomeClass.cs` and `end: `
+
+    e.g.
+
+    see: path/to/SomeClass.cs snippet-name
+    end:
+
+    Step 2: In your source code, mark the sections you would like to use as a snippet
+            with `snippet-name : begin` and `snippet-name : end`. In the
+            example below, the name of the snippet is 'how-to-insert'.
 
 ## how-to-insert : begin
 ## Note
@@ -20,11 +29,9 @@ This document contains generated section, to keep it up-to-date
 ```
 ## how-to-insert : end
 
-    You should wrap the snippet in 'begin' and 'end' sections.
+    Step 3: Run this script (YourMarkdownFile.md will be overwritten)
 
-    ./Format-CodeSnippet.ps1 MyMarkdownFile.md
-    The MyMarkdownFile.md will be overwritten and the sections between
-    "see:" and "end:" will be replaced by code snippets
+    ./Format-CodeSnippet.ps1 ./YourMarkdownFile.md
 
 .EXAMPLE
     ./Format-CodeSnippet.ps1 -DryRun MyMarkdownFile.md
